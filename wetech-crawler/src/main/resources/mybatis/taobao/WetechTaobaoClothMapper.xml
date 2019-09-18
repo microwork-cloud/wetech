@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wetech.crawler.project.taobao.mapper.WetechTaobaoClothMapper">
+    
+    <resultMap type="com.wetech.crawler.project.taobao.domain.WetechTaobaoCloth" id="WetechTaobaoClothResult">
+        <result property="id"    column="id"    />
+        <result property="shopTitle"    column="shop_title"    />
+        <result property="shopLink"    column="shop_link"    />
+        <result property="clothLink"    column="cloth_link"    />
+        <result property="clothId"    column="cloth_id"    />
+        <result property="clothTitle"    column="cloth_title"    />
+        <result property="clothPrice"    column="cloth_price"    />
+        <result property="clothSpecialPrice"    column="cloth_special_price"    />
+        <result property="clothAmount"    column="cloth_amount"    />
+        <result property="clothDate"    column="cloth_date"    />
+        <result property="clothImage"    column="cloth_image"    />
+        <result property="clothDesc"    column="cloth_desc"    />
+        <result property="clothTags"    column="cloth_tags"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectWetechTaobaoClothVo">
+        select id, shop_title, shop_link, cloth_link, cloth_id, cloth_title, cloth_price, cloth_special_price, cloth_amount, cloth_date, cloth_image, cloth_desc, cloth_tags, create_time, update_time from wetech_taobao_cloth
+    </sql>
+
+    <select id="selectWetechTaobaoClothList" parameterType="com.wetech.crawler.project.taobao.domain.WetechTaobaoCloth" resultMap="WetechTaobaoClothResult">
+        <include refid="selectWetechTaobaoClothVo"/>
+        <where>  
+            <if test="shopTitle != null  and shopTitle != ''"> and shop_title = #{shopTitle}</if>
+            <if test="shopLink != null  and shopLink != ''"> and shop_link = #{shopLink}</if>
+            <if test="clothLink != null  and clothLink != ''"> and cloth_link = #{clothLink}</if>
+            <if test="clothId != null  and clothId != ''"> and cloth_id = #{clothId}</if>
+            <if test="clothTitle != null  and clothTitle != ''"> and cloth_title = #{clothTitle}</if>
+            <if test="clothPrice != null "> and cloth_price = #{clothPrice}</if>
+            <if test="clothSpecialPrice != null "> and cloth_special_price = #{clothSpecialPrice}</if>
+            <if test="clothAmount != null "> and cloth_amount = #{clothAmount}</if>
+            <if test="clothDate != null "> and cloth_date = #{clothDate}</if>
+            <if test="clothImage != null  and clothImage != ''"> and cloth_image = #{clothImage}</if>
+            <if test="clothDesc != null  and clothDesc != ''"> and cloth_desc = #{clothDesc}</if>
+            <if test="clothTags != null  and clothTags != ''"> and cloth_tags = #{clothTags}</if>
+        </where>
+    </select>
+    
+    <select id="selectWetechTaobaoClothById" parameterType="Long" resultMap="WetechTaobaoClothResult">
+        <include refid="selectWetechTaobaoClothVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertWetechTaobaoCloth" parameterType="com.wetech.crawler.project.taobao.domain.WetechTaobaoCloth" useGeneratedKeys="true" keyProperty="id">
+        insert into wetech_taobao_cloth
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="shopTitle != null  and shopTitle != ''">shop_title,</if>
+            <if test="shopLink != null  and shopLink != ''">shop_link,</if>
+            <if test="clothLink != null  and clothLink != ''">cloth_link,</if>
+            <if test="clothId != null  and clothId != ''">cloth_id,</if>
+            <if test="clothTitle != null  and clothTitle != ''">cloth_title,</if>
+            <if test="clothPrice != null ">cloth_price,</if>
+            <if test="clothSpecialPrice != null ">cloth_special_price,</if>
+            <if test="clothAmount != null ">cloth_amount,</if>
+            <if test="clothDate != null ">cloth_date,</if>
+            <if test="clothImage != null  and clothImage != ''">cloth_image,</if>
+            <if test="clothDesc != null  and clothDesc != ''">cloth_desc,</if>
+            <if test="clothTags != null  and clothTags != ''">cloth_tags,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="shopTitle != null  and shopTitle != ''">#{shopTitle},</if>
+            <if test="shopLink != null  and shopLink != ''">#{shopLink},</if>
+            <if test="clothLink != null  and clothLink != ''">#{clothLink},</if>
+            <if test="clothId != null  and clothId != ''">#{clothId},</if>
+            <if test="clothTitle != null  and clothTitle != ''">#{clothTitle},</if>
+            <if test="clothPrice != null ">#{clothPrice},</if>
+            <if test="clothSpecialPrice != null ">#{clothSpecialPrice},</if>
+            <if test="clothAmount != null ">#{clothAmount},</if>
+            <if test="clothDate != null ">#{clothDate},</if>
+            <if test="clothImage != null  and clothImage != ''">#{clothImage},</if>
+            <if test="clothDesc != null  and clothDesc != ''">#{clothDesc},</if>
+            <if test="clothTags != null  and clothTags != ''">#{clothTags},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateWetechTaobaoCloth" parameterType="com.wetech.crawler.project.taobao.domain.WetechTaobaoCloth">
+        update wetech_taobao_cloth
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="shopTitle != null  and shopTitle != ''">shop_title = #{shopTitle},</if>
+            <if test="shopLink != null  and shopLink != ''">shop_link = #{shopLink},</if>
+            <if test="clothLink != null  and clothLink != ''">cloth_link = #{clothLink},</if>
+            <if test="clothId != null  and clothId != ''">cloth_id = #{clothId},</if>
+            <if test="clothTitle != null  and clothTitle != ''">cloth_title = #{clothTitle},</if>
+            <if test="clothPrice != null ">cloth_price = #{clothPrice},</if>
+            <if test="clothSpecialPrice != null ">cloth_special_price = #{clothSpecialPrice},</if>
+            <if test="clothAmount != null ">cloth_amount = #{clothAmount},</if>
+            <if test="clothDate != null ">cloth_date = #{clothDate},</if>
+            <if test="clothImage != null  and clothImage != ''">cloth_image = #{clothImage},</if>
+            <if test="clothDesc != null  and clothDesc != ''">cloth_desc = #{clothDesc},</if>
+            <if test="clothTags != null  and clothTags != ''">cloth_tags = #{clothTags},</if>
+            <if test="createTime != null ">create_time = #{createTime},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteWetechTaobaoClothById" parameterType="Long">
+        delete from wetech_taobao_cloth where id = #{id}
+    </delete>
+
+    <delete id="deleteWetechTaobaoClothByIds" parameterType="String">
+        delete from wetech_taobao_cloth where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

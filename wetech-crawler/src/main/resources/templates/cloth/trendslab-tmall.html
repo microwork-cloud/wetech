@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <title>trendslab-tmall</title>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" >
+
+<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" >
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" ></script>
+</head>
+
+<body class="fixed-sidebar full-height-layout white-bg" style="padding-left: 50px;padding-right: 50px;">
+
+<div>
+
+<div class="row">
+  <div class="col-md-4">
+ <table>
+        <thead>
+            <tr>
+                <th>TagName</th>
+                <th>TagValue</th>
+                <th>TagWeight</th>
+            </tr>
+            <tr th:each="tag:${brandTags}">
+                <td th:text="${tag.tagName}"></td>
+                <td th:text="${tag.tagValue}"></td>
+                <td th:text="${tag.tagWeight}"></td>
+            </tr>
+        </thead>
+</table>
+  
+</div>
+
+  <div class="col-md-4">
+ <table>
+        <thead>
+            <tr>
+                <th>TagName</th>
+                <th>TagValue</th>
+                <th>TagWeight</th>
+            </tr>
+            <tr th:each="tag2:${patternTags}">
+                <td th:text="${tag2.tagName}"></td>
+                <td th:text="${tag2.tagValue}"></td>
+                <td th:text="${tag2.tagWeight}"></td>
+            </tr>
+        </thead>
+</table>  
+  
+</div>
+  <div class="col-md-4">
+ <table>
+        <thead>
+            <tr>
+                <th>Top 10</th>
+            </tr>
+            <tr th:each="cloth:${topClothList}">
+                <td>
+                	         	<img th:src="${cloth.clothImage}" width="180px"/>
+                	
+                
+                </td>
+            </tr>
+        </thead>
+</table>  
+  
+</div>
+</div>
+
+
+</div>
+
+
+</body>
+</html>
